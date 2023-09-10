@@ -1,13 +1,13 @@
-const sumAll = function(int1, int2) {
+const sumAll = function(min, max) {
 
     //error safeguard
 
     //negatives
-    if (int1 < 0 || int2 < 0) {
+    if (min < 0 || max < 0) {
         return 'ERROR';
     } 
-    //non-numer parameters 
-    else if(typeof(int1) != 'number' || typeof(int2) != 'number') {
+    //non-number parameters 
+    else if(!Number.isInteger(min) || !Number.isInteger(max)) {
         return 'ERROR';
     }
 
@@ -15,24 +15,18 @@ const sumAll = function(int1, int2) {
 
 
     //code logic
-    let i_start, i_end, i, sum;
+    let sum = 0;
 
-    if (int1 < int2) {
-        i_start = int1;
-        i_end = int2;
-    } else {
-        i_start = int2;
-        i_end = int1;
-    }
+    if (max < min) {
+        const temp = min;
+        min = max;
+        max = temp;
+    } 
 
-    i = i_start;
-    sum = 0;
-
-    while (i != (i_end + 1)) {
+    for (let i = min; i <= max; i++) {
         sum += i;
-        
-        i += 1;
     }
+
 
     return sum;
 };
